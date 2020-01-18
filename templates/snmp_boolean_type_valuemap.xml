@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>3.0</version>
+    <date>2020-01-20T20:20:20Z</date>
+    <value_maps>
+        <value_map>
+            <name>SNMP BooleanType</name>
+            <mappings>
+                <mapping>
+                    <value>0</value>
+                    <newvalue>False</newvalue>
+                </mapping>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>True</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+    </value_maps>
+</zabbix_export>
