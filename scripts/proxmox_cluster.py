@@ -325,7 +325,7 @@ except Exception as error:  # pylint: disable=broad-except
     print("Unable to open zabbix_sender:", str(error))
     sys.exit(1)
 try:
-    result = zabbix_sender.communicate(bytes(item_data, 'UTF-8'))
+    result = zabbix_sender.communicate(bytes(item_data).encode('UTF-8'))
 except Exception as error:  # pylint: disable=broad-except
     print("Error while sending values:", str(error))
     sys.exit(1)
