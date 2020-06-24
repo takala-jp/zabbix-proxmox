@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 # -*- coding: utf-8 -*-
-"""Report Promox cluster statistics to Zabbix.
+"""Report Proxmox cluster statistics to Zabbix.
 
 Copyright (C) 2020 Takala Consulting
 
@@ -21,7 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 Minimum requirements Proxmox 5, Python 3.4, Zabbix 3.0.
 """
 
-__version__ = '0.0.1'
+__version__ = '0.0.2'
 
 # Import modules
 import argparse
@@ -35,7 +35,7 @@ from proxmoxer import ProxmoxAPI
 
 # Set up argument parser
 parser = argparse.ArgumentParser(
-    description='Report Promox cluster statistics to zabbix')
+    description='Report Proxmox cluster statistics to zabbix')
 # Add optional arguments to the parser
 parser.add_argument('-a',
                     '--apihost',
@@ -84,7 +84,7 @@ try:
                          password=args.password,
                          verify_ssl=False)
 except Exception as error:  # pylint: disable=broad-except
-    print("Promox API call failed:", str(error))
+    print("Proxmox API call failed:", str(error))
     sys.exit(1)
 
 # base dictionary for cluster data
@@ -303,7 +303,7 @@ if args.verbose:
 epoch_seconds = int(time.time())
 item_data = ''
 for s in cluster_data['status']:
-    item_data += (args.target + " " + "promox.cluster." + str(s) + " " +
+    item_data += (args.target + " " + "proxmox.cluster." + str(s) + " " +
                   str(epoch_seconds) + " " + str(cluster_data['status'][s]) +
                   "\r\n")
 for n in cluster_data['nodes']:
