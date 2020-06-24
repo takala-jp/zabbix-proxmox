@@ -32,7 +32,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>promox.cluster.cpu_total</key>
+                    <key>proxmox.cluster.cpu_total</key>
                     <delay>0</delay>
                     <history>28</history>
                     <trends>365</trends>
@@ -75,7 +75,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>promox.cluster.cpu_usage</key>
+                    <key>proxmox.cluster.cpu_usage</key>
                     <delay>0</delay>
                     <history>28</history>
                     <trends>365</trends>
@@ -118,7 +118,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>promox.cluster.ksm_sharing</key>
+                    <key>proxmox.cluster.ksm_sharing</key>
                     <delay>0</delay>
                     <history>28</history>
                     <trends>365</trends>
@@ -161,7 +161,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>promox.cluster.lxc_running</key>
+                    <key>proxmox.cluster.lxc_running</key>
                     <delay>0</delay>
                     <history>28</history>
                     <trends>365</trends>
@@ -204,7 +204,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>promox.cluster.lxc_stopped</key>
+                    <key>proxmox.cluster.lxc_stopped</key>
                     <delay>0</delay>
                     <history>28</history>
                     <trends>365</trends>
@@ -247,7 +247,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>promox.cluster.lxc_total</key>
+                    <key>proxmox.cluster.lxc_total</key>
                     <delay>0</delay>
                     <history>28</history>
                     <trends>365</trends>
@@ -290,7 +290,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>promox.cluster.nodes_online</key>
+                    <key>proxmox.cluster.nodes_online</key>
                     <delay>0</delay>
                     <history>28</history>
                     <trends>365</trends>
@@ -333,7 +333,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>promox.cluster.nodes_total</key>
+                    <key>proxmox.cluster.nodes_total</key>
                     <delay>0</delay>
                     <history>28</history>
                     <trends>365</trends>
@@ -376,7 +376,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>promox.cluster.quorate</key>
+                    <key>proxmox.cluster.quorate</key>
                     <delay>0</delay>
                     <history>28</history>
                     <trends>365</trends>
@@ -421,7 +421,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>promox.cluster.ram_free</key>
+                    <key>proxmox.cluster.ram_free</key>
                     <delay>0</delay>
                     <history>28</history>
                     <trends>365</trends>
@@ -464,7 +464,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>promox.cluster.ram_total</key>
+                    <key>proxmox.cluster.ram_total</key>
                     <delay>0</delay>
                     <history>28</history>
                     <trends>365</trends>
@@ -507,7 +507,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>promox.cluster.ram_usage</key>
+                    <key>proxmox.cluster.ram_usage</key>
                     <delay>0</delay>
                     <history>28</history>
                     <trends>365</trends>
@@ -550,7 +550,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>promox.cluster.ram_used</key>
+                    <key>proxmox.cluster.ram_used</key>
                     <delay>0</delay>
                     <history>28</history>
                     <trends>365</trends>
@@ -593,7 +593,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>promox.cluster.vcpu_allocated</key>
+                    <key>proxmox.cluster.vcpu_allocated</key>
                     <delay>0</delay>
                     <history>28</history>
                     <trends>365</trends>
@@ -636,7 +636,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>promox.cluster.vhdd_allocated</key>
+                    <key>proxmox.cluster.vhdd_allocated</key>
                     <delay>0</delay>
                     <history>28</history>
                     <trends>365</trends>
@@ -679,7 +679,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>promox.cluster.vms_running</key>
+                    <key>proxmox.cluster.vms_running</key>
                     <delay>0</delay>
                     <history>28</history>
                     <trends>365</trends>
@@ -722,7 +722,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>promox.cluster.vms_stopped</key>
+                    <key>proxmox.cluster.vms_stopped</key>
                     <delay>0</delay>
                     <history>28</history>
                     <trends>365</trends>
@@ -765,7 +765,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>promox.cluster.vms_total</key>
+                    <key>proxmox.cluster.vms_total</key>
                     <delay>0</delay>
                     <history>28</history>
                     <trends>365</trends>
@@ -808,7 +808,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>promox.cluster.vm_templates</key>
+                    <key>proxmox.cluster.vm_templates</key>
                     <delay>0</delay>
                     <history>28</history>
                     <trends>365</trends>
@@ -851,7 +851,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>promox.cluster.vram_allocated</key>
+                    <key>proxmox.cluster.vram_allocated</key>
                     <delay>0</delay>
                     <history>28</history>
                     <trends>365</trends>
@@ -894,7 +894,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>promox.cluster.vram_usage</key>
+                    <key>proxmox.cluster.vram_usage</key>
                     <delay>0</delay>
                     <history>28</history>
                     <trends>365</trends>
@@ -937,7 +937,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>promox.cluster.vram_used</key>
+                    <key>proxmox.cluster.vram_used</key>
                     <delay>0</delay>
                     <history>28</history>
                     <trends>365</trends>
@@ -1739,7 +1739,7 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template Proxmox cluster:promox.cluster.quorate.nodata(11m)}=1</expression>
+            <expression>{Template Proxmox cluster:proxmox.cluster.quorate.nodata(11m)}=1</expression>
             <name>No status updates from {HOSTNAME}</name>
             <url/>
             <status>0</status>
@@ -1749,7 +1749,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template Proxmox cluster:promox.cluster.quorate.last()}&lt;&gt;1</expression>
+            <expression>{Template Proxmox cluster:proxmox.cluster.quorate.last()}&lt;&gt;1</expression>
             <name>Proxmox not quorate on {HOSTNAME}</name>
             <url/>
             <status>0</status>
