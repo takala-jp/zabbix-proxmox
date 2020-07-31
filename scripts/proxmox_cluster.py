@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 # -*- coding: utf-8 -*-
-"""Report Promox cluster statistics to Zabbix.
+"""Report Proxmox cluster statistics to Zabbix.
 
 Copyright (C) 2020 Takala Consulting
 
@@ -21,7 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 Minimum requirements Proxmox 5, Python 3.4, Zabbix 3.0.
 """
 
-__version__ = '0.0.1'
+__version__ = '0.0.2'
 
 # Import modules
 import argparse
@@ -35,7 +35,7 @@ from proxmoxer import ProxmoxAPI
 
 # Set up argument parser
 parser = argparse.ArgumentParser(
-    description='Report Promox cluster statistics to zabbix')
+    description='Report Proxmox cluster statistics to zabbix')
 # Add optional arguments to the parser
 parser.add_argument('-a',
                     '--apihost',
@@ -84,7 +84,7 @@ try:
                          password=args.password,
                          verify_ssl=False)
 except Exception as error:  # pylint: disable=broad-except
-    print("Promox API call failed:", str(error))
+    print("Proxmox API call failed:", str(error))
     sys.exit(1)
 
 # base dictionary for cluster data
@@ -92,6 +92,7 @@ cluster_data = {
     'status': {
         'quorate': 0,
         'cpu_total': 0,
+        'cpu_usage': 0,
         'ram_total': 0,
         'ram_used': 0,
         'ram_free': 0,
@@ -148,7 +149,7 @@ if args.discovery:
             "-k" + "proxmox.nodes.discovery", "-o" + str(discovery_data)
         ])
     except Exception as error:  # pylint: disable=broad-except
-        print("Unable to open zabbix_sender:", str(error))
+        print("Error while sending discovery data:", str(error))
         sys.exit(1)
     if args.verbose:
         print(result)
@@ -177,9 +178,10 @@ for node in proxmox.nodes.get():
             'maxmem', 0) - node.get('mem', 0)
 
 # update cluster total ram usage percentage
-cluster_data['status']['ram_usage'] = 100 * (
-    float(cluster_data['status']['ram_used']) /
-    float(cluster_data['status']['ram_total']))
+if float(cluster_data['status']['ram_total']) > 0:
+    cluster_data['status']['ram_usage'] = 100 * (
+        float(cluster_data['status']['ram_used']) /
+        float(cluster_data['status']['ram_total']))
 
 # get ksm sharing and cpu usage info from online nodes
 cpu_usage_combined = 0
@@ -194,8 +196,9 @@ for n in cluster_data['nodes']:
             'shared', 0)
 
 # calculate cluster total cpu usage percentage
-cluster_data['status']['cpu_usage'] = (
-    float(cpu_usage_combined) / float(cluster_data['status']['nodes_online']))
+if float(cluster_data['status']['nodes_online']) > 0:
+    cluster_data['status']['cpu_usage'] = (
+        float(cpu_usage_combined) / float(cluster_data['status']['nodes_online']))
 
 # regular expression to match disk strings in vm config
 disk_pattern = re.compile(r"vm-\d+-disk-\d+")
@@ -284,9 +287,10 @@ for vm in proxmox.cluster.resources.get(type='vm'):
                     update_vhdd(vm_config.get(c), vm['node'])
 
 # calculate cluster total vram usage percentage
-cluster_data['status']['vram_usage'] = 100 * (
-    float(cluster_data['status']['vram_used']) /
-    float(cluster_data['status']['vram_allocated']))
+if float(cluster_data['status']['vram_allocated']) > 0:
+    cluster_data['status']['vram_usage'] = 100 * (
+        float(cluster_data['status']['vram_used']) /
+        float(cluster_data['status']['vram_allocated']))
 
 # calculate cluster total VMs stopped
 cluster_data['status']['vms_stopped'] = (cluster_data['status']['vms_total'] -

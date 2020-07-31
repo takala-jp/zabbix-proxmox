@@ -56,7 +56,25 @@ If there is no load balancer fronting the API it would make sense to use multipl
 38 4,12,20 * * * /usr/lib/zabbix/bin/proxmox_cluster.py -a pmx02.your.tld -u zabbix@pve -p password -t proxmox.tokyo.prod -d 
 ```
 
+One of the zabbix item keys in the script, and template, is prefixed ```promox```. That is obviously a typo but changing it would mean breaking compatability with existing installations. Changing the key in zabbix would mean losing historical data which is also undesirable. This is purely a cosmetic issue but if desirable you can of course change the prefix for those items. In that case also make sure that the keys in the template are updated accordingly.
+
+If you define the zabbix monitor user in Linux instead of Proxmox the -u parameter would have to reflect that by using the pam realm: ```zabbix@pam```.
+
 Minimum requirements Proxmox 5, Python 3.4 and Zabbix 3.0.
+
+Verified against Proxmox 6, Python 3.6 and Zabbix 5.0.
+
+## Issues
+
+The first step when diagnosing issues is to ensure that zabbix_sender is working and the target host in zabbix is configured correctly. Try the following command on the host where the script is going to run. This should return "processed: 1; failed: 0":
+
+```
+[user@zabbix ~]# /usr/bin/zabbix_sender -v -c /etc/zabbix/zabbix_agentd.conf -s proxmox.tokyo.prod -k promox.cluster.quorate -o 1
+Response from "127.0.0.1:10051": "processed: 1; failed: 0; total: 1; seconds spent: 0.000036"
+sent: 1; skipped: 0; total: 1
+```
+
+The value for the -s parameter is the host you configured in the zabbix GUI to receive the data and attached the template to. That is the value you should use for the -t parameter with the script. (please note that the key value of the -k parameter is currently indeed promox.cluster.quorate an unfortunate typo mentioned under notes as well).
 
 ## License
 
