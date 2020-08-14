@@ -21,10 +21,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 Minimum requirements Proxmox 5, Python 3.4, Zabbix 3.0.
 """
 
-__version__ = '0.0.2'
+__version__ = '0.0.3'
 
 # Import modules
 import argparse
+import yaml
 import json
 import re
 import socket
@@ -45,6 +46,10 @@ parser.add_argument('-c',
                     '--config',
                     default='/etc/zabbix/zabbix_agentd.conf',
                     help='full path to zabbix_agentd configuration file')
+parser.add_argument('-C',
+                    '--config-proxmox-cluster',
+                    default=None,
+                    help='full path to proxmox_cluster.yml configuration file')
 parser.add_argument('-d',
                     '--discovery',
                     help='send low level discovery data instead of items',
@@ -76,6 +81,27 @@ parser.add_argument('-z',
 
 # Parse the arguments
 args = parser.parse_args()
+
+if args.config_proxmox_cluster:
+    with open(args.config_proxmox_cluster, 'r', encoding='utf8') as fp:
+        y = yaml.load(fp, Loader=yaml.SafeLoader)
+        if y['target'] == 'socket.gethostname()':
+            y['target'] = socket.gethostname()
+
+        class dict_to_obj(object):
+            def __init__(self, d):
+                self.__dict__ = d
+            # def __repr__(self):
+            #     keys = sorted(self.__dict__)
+            #     items = ("{}={!r}".format(k, self.__dict__[k]) for k in keys)
+            #     return "{}({})".format(type(self).__name__, ", ".join(items))
+        yargs = dict_to_obj(y)
+
+        if args.extended:
+            yargs.extended = args.extended
+        if args.verbose:
+            yargs.verbose = args.verbose
+        args = yargs
 
 # connect to Proxmox API
 try:

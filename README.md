@@ -31,6 +31,7 @@ The script accepts the following parameters:
 
   * -a : Proxmox API hostname or IP address (can include port if the API listens on a non default port, e.g. pmx01.your.tld:8443)
   * -c : Zabbix agent configuration file that is passed as a parameter to zabbix sender (defaults to: */etc/zabbix/zabbix_agentd.conf*)
+  * -C : The script configuration file (e.g. scripts/proxmox_cluster.yml)
   * -d : Send discovery data instead of item data
   * -e : Get extended VM configuration details in order to collect vHDD allocations (see notes)
   * -p : Proxmox API password
