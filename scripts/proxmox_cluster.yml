@@ -1,0 +1,20 @@
+# Proxmox API hostname or fqdn
+apihost: localhost
+# Full path to zabbix_agentd configuration file
+config: /etc/zabbix/zabbix_agentd.conf
+# Get extended configuration to return vHDD allocation
+extended: true
+# Proxmox API username
+username: zabbix@pve
+# Proxmox API password
+password: xxxPASSWORDxxx
+# Output verbose item data
+verbose: false
+##############################
+### not used for json
+# Zabbix target hostname
+discovery: false
+# Full path to zabbix sender binary
+zsend: /usr/bin/zabbix_sender
+# Zabbix target hostname
+target: socket.gethostname()
