@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.4</version>
-    <date>2020-08-14T22:34:19Z</date>
+    <date>2020-08-15T05:55:42Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -239,11 +239,23 @@
                             <expression>{nodata(11m)}=1</expression>
                             <name>No status updates from {HOSTNAME}</name>
                             <priority>HIGH</priority>
+                            <tags>
+                                <tag>
+                                    <tag>proxmox</tag>
+                                    <value>cluster</value>
+                                </tag>
+                            </tags>
                         </trigger>
                         <trigger>
                             <expression>{last()}&lt;&gt;1</expression>
                             <name>Proxmox not quorate on {HOSTNAME}</name>
                             <priority>DISASTER</priority>
+                            <tags>
+                                <tag>
+                                    <tag>proxmox</tag>
+                                    <value>cluster</value>
+                                </tag>
+                            </tags>
                         </trigger>
                     </triggers>
                 </item>
@@ -569,6 +581,12 @@
                             <expression>{nodata(60m)}=1</expression>
                             <name>Proxmox json nodata in last hour {HOSTNAME}</name>
                             <priority>WARNING</priority>
+                            <tags>
+                                <tag>
+                                    <tag>proxmox</tag>
+                                    <value>cluster</value>
+                                </tag>
+                            </tags>
                         </trigger>
                     </triggers>
                 </item>
@@ -597,7 +615,7 @@
                             <preprocessing>
                                 <step>
                                     <type>JSONPATH</type>
-                                    <params>$.[{#NODE}]</params>
+                                    <params>$.nodes.{#NODE}</params>
                                 </step>
                             </preprocessing>
                             <master_item>
@@ -746,6 +764,12 @@
                                     <expression>{last()}&lt;&gt;1</expression>
                                     <name>Node {#NODE} not online on {HOSTNAME}</name>
                                     <priority>HIGH</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>proxmox</tag>
+                                            <value>node</value>
+                                        </tag>
+                                    </tags>
                                 </trigger_prototype>
                             </trigger_prototypes>
                         </item_prototype>
@@ -984,13 +1008,13 @@
                     <lld_macro_paths>
                         <lld_macro_path>
                             <lld_macro>{#NODE}</lld_macro>
-                            <path>$.id</path>
+                            <path>$.name</path>
                         </lld_macro_path>
                     </lld_macro_paths>
                     <preprocessing>
                         <step>
                             <type>JSONPATH</type>
-                            <params>$.nodes</params>
+                            <params>$.nodes_list</params>
                         </step>
                     </preprocessing>
                 </discovery_rule>
@@ -1007,8 +1031,8 @@
                             <key>proxmox.replication.duration[{#NODE_SRC},{#NODE_DST},{#VMTYPE},{#GUEST}]</key>
                             <delay>0</delay>
                             <history>7d</history>
-                            <trends>0</trends>
-                            <units>unixtime</units>
+                            <value_type>FLOAT</value_type>
+                            <units>s</units>
                             <applications>
                                 <application>
                                     <name>Proxmox replication</name>
@@ -1018,6 +1042,11 @@
                                 <step>
                                     <type>JSONPATH</type>
                                     <params>$.duration</params>
+                                </step>
+                                <step>
+                                    <type>REGEX</type>
+                                    <params>^([0-9]+)\.*
+\1</params>
                                 </step>
                             </preprocessing>
                             <master_item>
@@ -1031,7 +1060,6 @@
                             <delay>0</delay>
                             <history>7d</history>
                             <trends>0</trends>
-                            <units>unixtime</units>
                             <applications>
                                 <application>
                                     <name>Proxmox replication</name>
@@ -1048,10 +1076,14 @@
                             </master_item>
                             <trigger_prototypes>
                                 <trigger_prototype>
-                                    <expression>{last()}=0</expression>
-                                    <name>Proxmox replication fail_count &gt; 0 {#TYPE}/{#GUEST} {#NODE_SRC} to {#NODE_DST}</name>
+                                    <expression>{last()}&gt;0</expression>
+                                    <name>Proxmox replication fail_count &gt; 0 {#VMTYPE}/{#GUEST} {#NODE_SRC} to {#NODE_DST}</name>
                                     <priority>WARNING</priority>
                                     <tags>
+                                        <tag>
+                                            <tag>proxmox</tag>
+                                            <value>fail_count</value>
+                                        </tag>
                                         <tag>
                                             <tag>proxmox</tag>
                                             <value>replication</value>
@@ -1073,6 +1105,12 @@
                                     <name>Proxmox replication</name>
                                 </application>
                             </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$.replication.{#ID}</params>
+                                </step>
+                            </preprocessing>
                             <master_item>
                                 <key>proxmox.json</key>
                             </master_item>
@@ -1146,44 +1184,64 @@
                                 <key>proxmox.replication.json[{#NODE_SRC},{#NODE_DST},{#TYPE},{#GUEST}]</key>
                             </master_item>
                         </item_prototype>
+                        <item_prototype>
+                            <name>Proxmox replication sync start {#VMTYPE}/{#GUEST} {#NODE_SRC} to {#NODE_DST}</name>
+                            <type>DEPENDENT</type>
+                            <key>proxmox.replication.pid[{#NODE_SRC},{#NODE_DST},{#VMTYPE},{#GUEST}]</key>
+                            <delay>0</delay>
+                            <history>7d</history>
+                            <trends>0</trends>
+                            <applications>
+                                <application>
+                                    <name>Proxmox replication</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$.pid</params>
+                                    <error_handler>CUSTOM_VALUE</error_handler>
+                                    <error_handler_params>0</error_handler_params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>proxmox.replication.json[{#NODE_SRC},{#NODE_DST},{#TYPE},{#GUEST}]</key>
+                            </master_item>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}&gt;0</expression>
+                                    <name>Proxmox replication sync start {#VMTYPE}/{#GUEST} {#NODE_SRC} to {#NODE_DST}</name>
+                                    <priority>INFO</priority>
+                                    <tags>
+                                        <tag>
+                                            <tag>proxmox</tag>
+                                            <value>replication</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>proxmox</tag>
+                                            <value>sync</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
                     </item_prototypes>
                     <master_item>
                         <key>proxmox.json</key>
                     </master_item>
-                    <lld_macro_paths>
-                        <lld_macro_path>
-                            <lld_macro>{#NODE_SRC}</lld_macro>
-                            <path>$.source</path>
-                        </lld_macro_path>
-                        <lld_macro_path>
-                            <lld_macro>{#NODE_DST}</lld_macro>
-                            <path>$.target</path>
-                        </lld_macro_path>
-                        <lld_macro_path>
-                            <lld_macro>{#REPLICATION_ID}</lld_macro>
-                            <path>$.id</path>
-                        </lld_macro_path>
-                        <lld_macro_path>
-                            <lld_macro>{#TYPE}</lld_macro>
-                            <path>$.type</path>
-                        </lld_macro_path>
-                        <lld_macro_path>
-                            <lld_macro>{#GUEST}</lld_macro>
-                            <path>$.guest</path>
-                        </lld_macro_path>
-                        <lld_macro_path>
-                            <lld_macro>{#VMTYPE}</lld_macro>
-                            <path>$.vmtype</path>
-                        </lld_macro_path>
-                    </lld_macro_paths>
                     <preprocessing>
                         <step>
                             <type>JSONPATH</type>
-                            <params>$.replication</params>
+                            <params>$.replication_list</params>
                         </step>
                     </preprocessing>
                 </discovery_rule>
             </discovery_rules>
+            <tags>
+                <tag>
+                    <tag>proxmox</tag>
+                </tag>
+            </tags>
         </template>
     </templates>
     <value_maps>

@@ -132,7 +132,8 @@ cluster_data = {
         'nodes_online': 0,
     },
     'nodes': {},
-    'replication': []
+    'replication': {},
+    'replication_list': []
 }
 
 # get cluster and nodes overview
@@ -142,21 +143,20 @@ for node in proxmox.cluster.status.get():
         cluster_data['status']['nodes_total'] = node['nodes']
     if node['type'] == "node":
         cluster_data['nodes'][node['name']] = {
-            'online': node['online'],
-            'vms_total': 0,
-            'vms_running': 0,
-            'lxc_total': 0,
-            'lxc_running': 0,
-            'vcpu_allocated': 0,
-            'vram_allocated': 0,
-            'vhdd_allocated': 0,
-            'vram_used': 0,
-            'ksm_sharing': 0,
+                'online': node['online'],
+                'vms_total': 0,
+                'vms_running': 0,
+                'lxc_total': 0,
+                'lxc_running': 0,
+                'vcpu_allocated': 0,
+                'vram_allocated': 0,
+                'vhdd_allocated': 0,
+                'vram_used': 0,
+                'ksm_sharing': 0,
         }
 
 # get cluster and node details
 for node in proxmox.nodes.get():
-    #p(node)
     if node['type'] == "node":
         cd_nnn = cluster_data['nodes'][node['node']]
         cd_nnn['id'] = node['node']
@@ -174,13 +174,20 @@ for node in proxmox.nodes.get():
         cd_s['ram_used'] += node.get('mem', 0)
         cd_s['ram_free'] += node.get('maxmem', 0) - node.get('mem', 0)
 
-        # # replication
-        # cd_nnnr = cluster_data['nodes'][node['node']]['replication']
-        # cd_nnnr += proxmox.nodes.get(node['node']+'/replication')
-
         # replication
         cd_nnnr = cluster_data['replication']
-        cd_nnnr += proxmox.nodes.get(node['node']+'/replication')
+        replicas = proxmox.nodes.get(node['node']+'/replication')
+
+        for replica in replicas:
+            i = replica['id'].replace('-', 'x')
+            cluster_data['replication_list'] += [{
+                "{#ID}": i,
+                "{#NODE_SRC}": replica['source'],
+                "{#NODE_DST}": replica['target'],
+                "{#VMTYPE}": replica['vmtype'],
+                "{#GUEST}": replica['guest'],
+            }]
+            cd_nnnr[i] = replica
 
 # update cluster total ram usage percentage
 if float(cluster_data['status']['ram_total']) > 0:
@@ -309,6 +316,11 @@ if args.verbose:
     print(json.dumps(cluster_data, indent=4))
 
 # Prepare values for zabbix
+
+cluster_data['nodes_list'] = []
+for node in cluster_data['nodes']:
+    cluster_data['nodes_list'] += [{"name": node }]
+
 item_json = json.dumps(cluster_data)
 
 print(item_json)
