@@ -21,7 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 Minimum requirements Proxmox 5, Python 3.4, Zabbix 3.0.
 """
 
-__version__ = '0.0.3'
+__version__ = '0.0.1'
 
 # Import modules
 import argparse
@@ -50,10 +50,6 @@ parser.add_argument('-C',
                     '--config-proxmox-cluster',
                     default=None,
                     help='full path to proxmox_cluster.yml configuration file')
-parser.add_argument('-d',
-                    '--discovery',
-                    help='send low level discovery data instead of items',
-                    action="store_true")
 parser.add_argument('-e',
                     '--extended',
                     help='get extended configuration to return vHDD allocation',
@@ -72,7 +68,7 @@ parser.add_argument('-u',
                     help='Proxmox API username')
 parser.add_argument('-v',
                     '--verbose',
-                    help='output verbose discovery and item data',
+                    help='output verbose item data',
                     action="store_true")
 parser.add_argument('-z',
                     '--zsend',
@@ -91,10 +87,6 @@ if args.config_proxmox_cluster:
         class dict_to_obj(object):
             def __init__(self, d):
                 self.__dict__ = d
-            # def __repr__(self):
-            #     keys = sorted(self.__dict__)
-            #     items = ("{}={!r}".format(k, self.__dict__[k]) for k in keys)
-            #     return "{}({})".format(type(self).__name__, ", ".join(items))
         yargs = dict_to_obj(y)
 
         if args.extended:
@@ -139,7 +131,9 @@ cluster_data = {
         'nodes_total': 0,
         'nodes_online': 0,
     },
-    'nodes': {}
+    'nodes': {},
+    'replication': {},
+    'replication_list': []
 }
 
 # get cluster and nodes overview
@@ -149,59 +143,51 @@ for node in proxmox.cluster.status.get():
         cluster_data['status']['nodes_total'] = node['nodes']
     if node['type'] == "node":
         cluster_data['nodes'][node['name']] = {
-            'online': node['online'],
-            'vms_total': 0,
-            'vms_running': 0,
-            'lxc_total': 0,
-            'lxc_running': 0,
-            'vcpu_allocated': 0,
-            'vram_allocated': 0,
-            'vhdd_allocated': 0,
-            'vram_used': 0,
-            'ksm_sharing': 0,
+                'online': node['online'],
+                'vms_total': 0,
+                'vms_running': 0,
+                'lxc_total': 0,
+                'lxc_running': 0,
+                'vcpu_allocated': 0,
+                'vram_allocated': 0,
+                'vhdd_allocated': 0,
+                'vram_used': 0,
+                'ksm_sharing': 0,
         }
-
-# if requested send low level discovery data now and exit
-if args.discovery:
-    discovery_data = (json.dumps(
-        {'data': [{
-            "{#NODE}": n
-        } for n in cluster_data['nodes']]}))
-    if args.verbose:
-        print(discovery_data)
-    try:
-        result = subprocess.check_output([
-            args.zsend, "-c" + args.config, "-s" + args.target,
-            "-k" + "proxmox.nodes.discovery", "-o" + str(discovery_data)
-        ])
-    except Exception as error:  # pylint: disable=broad-except
-        print("Error while sending discovery data:", str(error))
-        sys.exit(1)
-    if args.verbose:
-        print(result)
-    sys.exit(0)
 
 # get cluster and node details
 for node in proxmox.nodes.get():
     if node['type'] == "node":
-        cluster_data['nodes'][node['node']]['cpu_total'] = node.get(
-            'maxcpu', 0)
-        cluster_data['nodes'][node['node']]['cpu_usage'] = node.get(
-            'cpu', 0) * 100
-        cluster_data['nodes'][node['node']]['ram_total'] = node.get(
-            'maxmem', 0)
-        cluster_data['nodes'][node['node']]['ram_used'] = node.get(
-            'mem', 0)
-        cluster_data['nodes'][node['node']]['ram_free'] = node.get(
-            'maxmem', 0) - node.get('mem', 0)
-        cluster_data['nodes'][node['node']]['ram_usage'] = 100 * (
+        cd_nnn = cluster_data['nodes'][node['node']]
+        cd_nnn['id'] = node['node']
+        cd_nnn['cpu_total'] = node.get('maxcpu', 0)
+        cd_nnn['cpu_usage'] = node.get('cpu', 0) * 100
+        cd_nnn['ram_total'] = node.get('maxmem', 0)
+        cd_nnn['ram_used'] = node.get('mem', 0)
+        cd_nnn['ram_free'] = node.get('maxmem', 0) - node.get('mem', 0)
+        cd_nnn['ram_usage'] = 100 * (
             float(node.get('mem', 0)) / float(node.get('maxmem', 1)))
         # update cluster total metrics
-        cluster_data['status']['cpu_total'] += node.get('maxcpu', 0)
-        cluster_data['status']['ram_total'] += node.get('maxmem', 0)
-        cluster_data['status']['ram_used'] += node.get('mem', 0)
-        cluster_data['status']['ram_free'] += node.get(
-            'maxmem', 0) - node.get('mem', 0)
+        cd_s = cluster_data['status']
+        cd_s['cpu_total'] += node.get('maxcpu', 0)
+        cd_s['ram_total'] += node.get('maxmem', 0)
+        cd_s['ram_used'] += node.get('mem', 0)
+        cd_s['ram_free'] += node.get('maxmem', 0) - node.get('mem', 0)
+
+        # replication
+        cd_nnnr = cluster_data['replication']
+        replicas = proxmox.nodes.get(node['node']+'/replication')
+
+        for replica in replicas:
+            i = replica['id'].replace('-', 'x')
+            cluster_data['replication_list'] += [{
+                "{#ID}": i,
+                "{#NODE_SRC}": replica['source'],
+                "{#NODE_DST}": replica['target'],
+                "{#VMTYPE}": replica['vmtype'],
+                "{#GUEST}": replica['guest'],
+            }]
+            cd_nnnr[i] = replica
 
 # update cluster total ram usage percentage
 if float(cluster_data['status']['ram_total']) > 0:
@@ -330,37 +316,11 @@ if args.verbose:
     print(json.dumps(cluster_data, indent=4))
 
 # Prepare values for zabbix
-epoch_seconds = int(time.time())
-item_data = ''
-for s in cluster_data['status']:
-    item_data += (args.target + " " + "promox.cluster." + str(s) + " " +
-                  str(epoch_seconds) + " " + str(cluster_data['status'][s]) +
-                  "\r\n")
-for n in cluster_data['nodes']:
-    for i in cluster_data['nodes'][n]:
-        item_data += (args.target + " " + "proxmox.node." + str(i) + ".[" +
-                      str(n) + "]" + " " + str(epoch_seconds) + " " +
-                      str(cluster_data['nodes'][n][i]) + "\r\n")
 
-if args.verbose:
-    print(item_data)
+cluster_data['nodes_list'] = []
+for node in cluster_data['nodes']:
+    cluster_data['nodes_list'] += [{"name": node }]
 
-# send item values
-try:
-    zabbix_sender = subprocess.Popen(
-        [args.zsend, "-c" + args.config, "-T", "-i", "-"],
-        stdout=subprocess.PIPE,
-        stdin=subprocess.PIPE)
-except Exception as error:  # pylint: disable=broad-except
-    print("Unable to open zabbix_sender:", str(error))
-    sys.exit(1)
-try:
-    result = zabbix_sender.communicate(bytes(item_data, 'UTF-8'))
-except Exception as error:  # pylint: disable=broad-except
-    print("Error while sending values:", str(error))
-    sys.exit(1)
-if args.verbose:
-    print(result)
+item_json = json.dumps(cluster_data)
 
-# Sayonara
-sys.exit(0)
+print(item_json)
