@@ -157,25 +157,24 @@ if args.discovery:
 
 # get cluster and node details
 for node in proxmox.nodes.get():
-    if node['type'] == "node":
-        cluster_data['nodes'][node['node']]['cpu_total'] = node.get(
-            'maxcpu', 0)
-        cluster_data['nodes'][node['node']]['cpu_usage'] = node.get(
-            'cpu', 0) * 100
-        cluster_data['nodes'][node['node']]['ram_total'] = node.get(
-            'maxmem', 0)
-        cluster_data['nodes'][node['node']]['ram_used'] = node.get(
-            'mem', 0)
-        cluster_data['nodes'][node['node']]['ram_free'] = node.get(
-            'maxmem', 0) - node.get('mem', 0)
-        cluster_data['nodes'][node['node']]['ram_usage'] = 100 * (
-            float(node.get('mem', 0)) / float(node.get('maxmem', 1)))
-        # update cluster total metrics
-        cluster_data['status']['cpu_total'] += node.get('maxcpu', 0)
-        cluster_data['status']['ram_total'] += node.get('maxmem', 0)
-        cluster_data['status']['ram_used'] += node.get('mem', 0)
-        cluster_data['status']['ram_free'] += node.get(
-            'maxmem', 0) - node.get('mem', 0)
+    cluster_data['nodes'][node['node']]['cpu_total'] = node.get(
+        'maxcpu', 0)
+    cluster_data['nodes'][node['node']]['cpu_usage'] = node.get(
+        'cpu', 0) * 100
+    cluster_data['nodes'][node['node']]['ram_total'] = node.get(
+        'maxmem', 0)
+    cluster_data['nodes'][node['node']]['ram_used'] = node.get(
+        'mem', 0)
+    cluster_data['nodes'][node['node']]['ram_free'] = node.get(
+        'maxmem', 0) - node.get('mem', 0)
+    cluster_data['nodes'][node['node']]['ram_usage'] = 100 * (
+        float(node.get('mem', 0)) / float(node.get('maxmem', 1)))
+    # update cluster total metrics
+    cluster_data['status']['cpu_total'] += node.get('maxcpu', 0)
+    cluster_data['status']['ram_total'] += node.get('maxmem', 0)
+    cluster_data['status']['ram_used'] += node.get('mem', 0)
+    cluster_data['status']['ram_free'] += node.get(
+        'maxmem', 0) - node.get('mem', 0)
 
 # update cluster total ram usage percentage
 if float(cluster_data['status']['ram_total']) > 0:
