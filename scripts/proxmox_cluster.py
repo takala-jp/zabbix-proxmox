@@ -21,7 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 Minimum requirements Proxmox 5, Python 3.4, Zabbix 3.0.
 """
 
-__version__ = '0.0.2'
+__version__ = '0.1.0'
 
 # Import modules
 import argparse
@@ -53,6 +53,14 @@ parser.add_argument('-e',
                     '--extended',
                     help='get extended configuration to return vHDD allocation',
                     action="store_true")
+parser.add_argument('-i',
+                    '--ignore-errors',
+                    help='ignore zabbix_sender errors',
+                    action="store_false")
+parser.add_argument('-o',
+                    '--output',
+                    help='output zabbix_sender summary',
+                    action="store_false")
 parser.add_argument('-p',
                     '--password',
                     default='',
@@ -144,10 +152,10 @@ if args.discovery:
     if args.verbose:
         print(discovery_data)
     try:
-        result = subprocess.check_output([
+        result = subprocess.run([
             args.zsend, "-c" + args.config, "-s" + args.target,
             "-k" + "proxmox.nodes.discovery", "-o" + str(discovery_data)
-        ])
+        ], capture_output=args.output, check=args.ignore_errors)
     except Exception as error:  # pylint: disable=broad-except
         print("Error while sending discovery data:", str(error))
         sys.exit(1)
@@ -321,17 +329,12 @@ if args.verbose:
 
 # send item values
 try:
-    zabbix_sender = subprocess.Popen(
-        [args.zsend, "-c" + args.config, "-T", "-i", "-"],
-        stdout=subprocess.PIPE,
-        stdin=subprocess.PIPE)
+    result = subprocess.run([
+        args.zsend, "-c" + args.config, "-T" , "-i", "-"],
+        input=bytes(item_data, 'UTF-8'),
+        capture_output=args.output, check=args.ignore_errors)
 except Exception as error:  # pylint: disable=broad-except
-    print("Unable to open zabbix_sender:", str(error))
-    sys.exit(1)
-try:
-    result = zabbix_sender.communicate(bytes(item_data, 'UTF-8'))
-except Exception as error:  # pylint: disable=broad-except
-    print("Error while sending values:", str(error))
+    print("Error while sending items: ", str(error))
     sys.exit(1)
 if args.verbose:
     print(result)

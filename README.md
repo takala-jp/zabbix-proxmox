@@ -33,6 +33,8 @@ The script accepts the following parameters:
   * -c : Zabbix agent configuration file that is passed as a parameter to zabbix sender (defaults to: */etc/zabbix/zabbix_agentd.conf*)
   * -d : Send discovery data instead of item data
   * -e : Get extended VM configuration details in order to collect vHDD allocations (see notes)
+  * -i : Ignore zabbix_sender non-zero exit codes (see Discovery errors)
+  * -o : Output the zabbix_sender response summary
   * -p : Proxmox API password
   * -t : Zabbix target host name (the host in Zabbix with the *Template Proxmox cluster* template attached)
   * -u : Proxmox API username (defaults to: *zabbix@pve*)
@@ -60,9 +62,9 @@ One of the zabbix item keys in the script, and template, is prefixed ```promox``
 
 If you define the zabbix monitor user in Linux instead of Proxmox the -u parameter would have to reflect that by using the pam realm: ```zabbix@pam```.
 
-Minimum requirements Proxmox 5, Python 3.4 and Zabbix 3.0.
+Minimum requirements Proxmox 5, Python 3.7 and Zabbix 3.0.
 
-Verified against Proxmox 6, Python 3.6 and Zabbix 5.0.
+Verified with Proxmox 6, Python 3.9 and Zabbix 5.0.
 
 ## Issues
 
@@ -75,6 +77,18 @@ sent: 1; skipped: 0; total: 1
 ```
 
 The value for the -s parameter is the host you configured in the zabbix GUI to receive the data and attached the template to. That is the value you should use for the -t parameter with the script. (please note that the key value of the -k parameter is currently indeed promox.cluster.quorate an unfortunate typo mentioned under notes as well).
+
+### Discovery errors
+
+There have been reports of zabbix_sender returning a partial fail (2) [exit status](https://www.zabbix.com/documentation/5.4/en/manpages/zabbix_sender) when sending discovery data. While this results in the script reporting an error the discovery data is actually processed by the zabbix server.
+
+You can test sending the recovery data manually as follows:
+
+```
+[user@zabbix ~]# /usr/bin/zabbix_sender -v -c /etc/zabbix/zabbix_agentd.conf -s proxmox.tokyo.prod -k proxmox.nodes.discovery -o '{"data": [{"{#NODE}": "pve01"}, {"{#NODE}": "pve02"}, {"{#NODE}": "pve03"}]}'
+```
+
+We have been unable to replicate the issue. However the error does not affect the overall functionality. Nodes are discovered and will populate in Zabbix, but this script will also exit with a non-zero value. If that causes issues in cron you can use the -i parameter to ignore non-zero zabbix_sender return codes when sending the discovery data.
 
 ## License
 
