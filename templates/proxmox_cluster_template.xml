@@ -1731,6 +1731,53 @@
                     <graph_prototypes/>
                     <host_prototypes/>
                 </discovery_rule>
+                <discovery_rule>
+                    <name>Proxmox storage discovery</name>
+                    <type>TRAP</type>
+                    <key>proxmox.storage.discovery</key>
+                    <delay>0</delay>
+                    <description>Discover storage in Proxmox cluster</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <uuid>dc0ff0f577404252879353fe41bf6e44</uuid>
+                            <name>{#STORAGE} Disk max</name>
+                            <type>TRAP</type>
+                            <key>proxmox.storage.disk_max.[{#STORAGE}]</key>
+                            <delay>0</delay>
+                            <history>28d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>B</units>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>a98f395f8b6141fbb862b4151a2b26b7</uuid>
+                            <name>{#STORAGE} Disk use</name>
+                            <type>TRAP</type>
+                            <key>proxmox.storage.disk_use.[{#STORAGE}]</key>
+                            <delay>0</delay>
+                            <history>28d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>B</units>
+                        </item_prototype>
+                        <item_prototype>
+                            <uuid>ec1b9b36898344feb50a89cd4c06a184</uuid>
+                            <name>{#STORAGE} Disk use %</name>
+                            <type>TRAP</type>
+                            <key>proxmox.storage.disk_use_p.[{#STORAGE}]</key>
+                            <delay>0</delay>
+                            <history>28d</history>
+                            <value_type>FLOAT</value_type>
+                            <units>%</units>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <uuid>1a7c402f35dc4ab4bfbae97b56162538</uuid>
+                                    <expression>last(/Template Proxmox cluster/proxmox.storage.disk_use_p.[{#STORAGE}])&gt;80</expression>
+                                    <name>Storage use {#STORAGE} high {HOSTNAME}</name>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
             </discovery_rules>
             <macros/>
             <templates/>
