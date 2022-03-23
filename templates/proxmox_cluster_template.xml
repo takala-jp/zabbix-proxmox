@@ -1,685 +1,1777 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
-    <version>5.4</version>
-    <date>2022-03-23T13:26:20Z</date>
+    <version>3.0</version>
+    <date>2020-01-20T20:20:20Z</date>
     <groups>
         <group>
-            <uuid>7df96b18c230490a9a0a9e2307226338</uuid>
             <name>Templates</name>
         </group>
     </groups>
     <templates>
         <template>
-            <uuid>9c84b8203fcd4d1f9ac49184fb26573d</uuid>
             <template>Template Proxmox cluster</template>
             <name>Template Proxmox cluster</name>
+            <description/>
             <groups>
                 <group>
                     <name>Templates</name>
                 </group>
             </groups>
+            <applications>
+                <application>
+                    <name>Proxmox cluster</name>
+                </application>
+                <application>
+                    <name>Proxmox nodes</name>
+                </application>
+            </applications>
             <items>
                 <item>
-                    <uuid>4e866a5a2c6545fa8555fa5f1a6eb3e3</uuid>
                     <name>CPUs total</name>
-                    <type>TRAP</type>
+                    <type>2</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
                     <key>promox.cluster.cpu_total</key>
                     <delay>0</delay>
-                    <history>28d</history>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>Proxmox cluster</value>
-                        </tag>
-                    </tags>
+                    <history>28</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Proxmox cluster</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
                 </item>
                 <item>
-                    <uuid>4ba917c4fcf2476cac8e5e218dc043af</uuid>
                     <name>CPUs usage</name>
-                    <type>TRAP</type>
+                    <type>2</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
                     <key>promox.cluster.cpu_usage</key>
                     <delay>0</delay>
-                    <history>28d</history>
-                    <value_type>FLOAT</value_type>
+                    <history>28</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>0</value_type>
+                    <allowed_hosts/>
                     <units>%</units>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>Proxmox cluster</value>
-                        </tag>
-                    </tags>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Proxmox cluster</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
                 </item>
                 <item>
-                    <uuid>b4fbfa9a741147afa20a032e1fcd6411</uuid>
                     <name>KSM sharing</name>
-                    <type>TRAP</type>
+                    <type>2</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
                     <key>promox.cluster.ksm_sharing</key>
                     <delay>0</delay>
-                    <history>28d</history>
+                    <history>28</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
                     <units>B</units>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>Proxmox cluster</value>
-                        </tag>
-                    </tags>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Proxmox cluster</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
                 </item>
                 <item>
-                    <uuid>59fcbab990e74748871ba89de049dbd6</uuid>
                     <name>Containers running</name>
-                    <type>TRAP</type>
+                    <type>2</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
                     <key>promox.cluster.lxc_running</key>
                     <delay>0</delay>
-                    <history>28d</history>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>Proxmox cluster</value>
-                        </tag>
-                    </tags>
+                    <history>28</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Proxmox cluster</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
                 </item>
                 <item>
-                    <uuid>a4c742a2b2504e8c981c8cbb245b0997</uuid>
                     <name>Containers stopped</name>
-                    <type>TRAP</type>
+                    <type>2</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
                     <key>promox.cluster.lxc_stopped</key>
                     <delay>0</delay>
-                    <history>28d</history>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>Proxmox cluster</value>
-                        </tag>
-                    </tags>
+                    <history>28</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Proxmox cluster</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
                 </item>
                 <item>
-                    <uuid>27cc72b9aea64873a98e9a496bd5182e</uuid>
                     <name>Containers total</name>
-                    <type>TRAP</type>
+                    <type>2</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
                     <key>promox.cluster.lxc_total</key>
                     <delay>0</delay>
-                    <history>28d</history>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>Proxmox cluster</value>
-                        </tag>
-                    </tags>
+                    <history>28</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Proxmox cluster</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
                 </item>
                 <item>
-                    <uuid>295dde992fe048d3aa57c7a00069c480</uuid>
                     <name>Nodes online</name>
-                    <type>TRAP</type>
+                    <type>2</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
                     <key>promox.cluster.nodes_online</key>
                     <delay>0</delay>
-                    <history>28d</history>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>Proxmox cluster</value>
-                        </tag>
-                    </tags>
+                    <history>28</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Proxmox cluster</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
                 </item>
                 <item>
-                    <uuid>ad0aa0b81c1c4f34915d7e6efdd1015a</uuid>
                     <name>Nodes total</name>
-                    <type>TRAP</type>
+                    <type>2</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
                     <key>promox.cluster.nodes_total</key>
                     <delay>0</delay>
-                    <history>28d</history>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>Proxmox cluster</value>
-                        </tag>
-                    </tags>
+                    <history>28</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Proxmox cluster</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
                 </item>
                 <item>
-                    <uuid>f3f0ae1348524e199a1322914a3d52d3</uuid>
                     <name>Cluster is quorate</name>
-                    <type>TRAP</type>
+                    <type>2</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
                     <key>promox.cluster.quorate</key>
                     <delay>0</delay>
-                    <history>28d</history>
+                    <history>28</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Proxmox cluster</name>
+                        </application>
+                    </applications>
                     <valuemap>
                         <name>SNMP BooleanType</name>
                     </valuemap>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>Proxmox cluster</value>
-                        </tag>
-                    </tags>
-                    <triggers>
-                        <trigger>
-                            <uuid>17fe14a53bef4a75a844b3d127eb24b4</uuid>
-                            <expression>nodata(/Template Proxmox cluster/promox.cluster.quorate,11m)=1</expression>
-                            <name>No status updates from {HOSTNAME}</name>
-                            <priority>HIGH</priority>
-                        </trigger>
-                        <trigger>
-                            <uuid>c9f02efb8e56431aba469b269ce6d851</uuid>
-                            <expression>last(/Template Proxmox cluster/promox.cluster.quorate)&lt;&gt;1</expression>
-                            <name>Proxmox not quorate on {HOSTNAME}</name>
-                            <priority>DISASTER</priority>
-                        </trigger>
-                    </triggers>
+                    <logtimefmt/>
                 </item>
                 <item>
-                    <uuid>4737207b834f4339a96714120a25e17d</uuid>
                     <name>RAM free</name>
-                    <type>TRAP</type>
+                    <type>2</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
                     <key>promox.cluster.ram_free</key>
                     <delay>0</delay>
-                    <history>28d</history>
+                    <history>28</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
                     <units>B</units>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>Proxmox cluster</value>
-                        </tag>
-                    </tags>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Proxmox cluster</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
                 </item>
                 <item>
-                    <uuid>aeaf86e140ac4154ad8cbf6f5f257ee4</uuid>
                     <name>RAM total</name>
-                    <type>TRAP</type>
+                    <type>2</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
                     <key>promox.cluster.ram_total</key>
                     <delay>0</delay>
-                    <history>28d</history>
+                    <history>28</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
                     <units>B</units>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>Proxmox cluster</value>
-                        </tag>
-                    </tags>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Proxmox cluster</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
                 </item>
                 <item>
-                    <uuid>774d335f6ed94601acf399b4d76af1f6</uuid>
                     <name>RAM usage</name>
-                    <type>TRAP</type>
+                    <type>2</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
                     <key>promox.cluster.ram_usage</key>
                     <delay>0</delay>
-                    <history>28d</history>
-                    <value_type>FLOAT</value_type>
+                    <history>28</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>0</value_type>
+                    <allowed_hosts/>
                     <units>%</units>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>Proxmox cluster</value>
-                        </tag>
-                    </tags>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Proxmox cluster</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
                 </item>
                 <item>
-                    <uuid>54b63e54956d4d7cb96103d760b0b614</uuid>
                     <name>RAM used</name>
-                    <type>TRAP</type>
+                    <type>2</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
                     <key>promox.cluster.ram_used</key>
                     <delay>0</delay>
-                    <history>28d</history>
+                    <history>28</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
                     <units>B</units>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>Proxmox cluster</value>
-                        </tag>
-                    </tags>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Proxmox cluster</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
                 </item>
                 <item>
-                    <uuid>9017820f520b43ada4cc4e77a1dd9c45</uuid>
                     <name>vCPUs allocated</name>
-                    <type>TRAP</type>
+                    <type>2</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
                     <key>promox.cluster.vcpu_allocated</key>
                     <delay>0</delay>
-                    <history>28d</history>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>Proxmox cluster</value>
-                        </tag>
-                    </tags>
+                    <history>28</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Proxmox cluster</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
                 </item>
                 <item>
-                    <uuid>a7e1fd3054fc498cb3b525208018ca99</uuid>
                     <name>vHDD allocated</name>
-                    <type>TRAP</type>
+                    <type>2</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
                     <key>promox.cluster.vhdd_allocated</key>
                     <delay>0</delay>
-                    <history>28d</history>
+                    <history>28</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
                     <units>B</units>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>Proxmox cluster</value>
-                        </tag>
-                    </tags>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Proxmox cluster</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
                 </item>
                 <item>
-                    <uuid>0699a4c8d70047ea97ec1b8b8beae434</uuid>
                     <name>VMs running</name>
-                    <type>TRAP</type>
+                    <type>2</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
                     <key>promox.cluster.vms_running</key>
                     <delay>0</delay>
-                    <history>28d</history>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>Proxmox cluster</value>
-                        </tag>
-                    </tags>
+                    <history>28</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Proxmox cluster</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
                 </item>
                 <item>
-                    <uuid>839c8bdd803c4a818bf37c8de938aae4</uuid>
                     <name>VMs stopped</name>
-                    <type>TRAP</type>
+                    <type>2</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
                     <key>promox.cluster.vms_stopped</key>
                     <delay>0</delay>
-                    <history>28d</history>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>Proxmox cluster</value>
-                        </tag>
-                    </tags>
+                    <history>28</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Proxmox cluster</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
                 </item>
                 <item>
-                    <uuid>c05c09eacd454a2f81b272024c245b5c</uuid>
                     <name>VMs total</name>
-                    <type>TRAP</type>
+                    <type>2</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
                     <key>promox.cluster.vms_total</key>
                     <delay>0</delay>
-                    <history>28d</history>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>Proxmox cluster</value>
-                        </tag>
-                    </tags>
+                    <history>28</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Proxmox cluster</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
                 </item>
                 <item>
-                    <uuid>bc8a693f38c449208add03a83ba6f17a</uuid>
                     <name>VM templates</name>
-                    <type>TRAP</type>
+                    <type>2</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
                     <key>promox.cluster.vm_templates</key>
                     <delay>0</delay>
-                    <history>28d</history>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>Proxmox cluster</value>
-                        </tag>
-                    </tags>
+                    <history>28</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Proxmox cluster</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
                 </item>
                 <item>
-                    <uuid>e615ff958796411a8ddd86cf9b78c4d2</uuid>
                     <name>vRAM allocated</name>
-                    <type>TRAP</type>
+                    <type>2</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
                     <key>promox.cluster.vram_allocated</key>
                     <delay>0</delay>
-                    <history>28d</history>
+                    <history>28</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
                     <units>B</units>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>Proxmox cluster</value>
-                        </tag>
-                    </tags>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Proxmox cluster</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
                 </item>
                 <item>
-                    <uuid>8d6d34edd2cd4e90a6fc25f555e6d464</uuid>
                     <name>vRAM usage</name>
-                    <type>TRAP</type>
+                    <type>2</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
                     <key>promox.cluster.vram_usage</key>
                     <delay>0</delay>
-                    <history>28d</history>
-                    <value_type>FLOAT</value_type>
+                    <history>28</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>0</value_type>
+                    <allowed_hosts/>
                     <units>%</units>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>Proxmox cluster</value>
-                        </tag>
-                    </tags>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Proxmox cluster</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
                 </item>
                 <item>
-                    <uuid>25a4f955e43e447da711dbe63b6cab95</uuid>
                     <name>vRAM used</name>
-                    <type>TRAP</type>
+                    <type>2</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
                     <key>promox.cluster.vram_used</key>
                     <delay>0</delay>
-                    <history>28d</history>
+                    <history>28</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
                     <units>B</units>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>Proxmox cluster</value>
-                        </tag>
-                    </tags>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Proxmox cluster</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
                 </item>
             </items>
             <discovery_rules>
                 <discovery_rule>
-                    <uuid>6cd9b84067e5444c8c3dfe92ff43b00b</uuid>
                     <name>Proxmox nodes discovery</name>
-                    <type>TRAP</type>
+                    <type>2</type>
+                    <snmp_community/>
+                    <snmp_oid/>
                     <key>proxmox.nodes.discovery</key>
                     <delay>0</delay>
+                    <status>0</status>
+                    <allowed_hosts/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <filter>
+                        <evaltype>0</evaltype>
+                        <formula/>
+                        <conditions/>
+                    </filter>
+                    <lifetime>30</lifetime>
                     <description>Discover nodes in Proxmox cluster</description>
                     <item_prototypes>
                         <item_prototype>
-                            <uuid>39938f8ef00344daabe505f05e9e0a05</uuid>
                             <name>{#NODE} CPUs total</name>
-                            <type>TRAP</type>
+                            <type>2</type>
+                            <snmp_community/>
+                            <multiplier>0</multiplier>
+                            <snmp_oid/>
                             <key>proxmox.node.cpu_total.[{#NODE}]</key>
                             <delay>0</delay>
-                            <history>28d</history>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Proxmox nodes</value>
-                                </tag>
-                            </tags>
+                            <history>28</history>
+                            <trends>365</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <delta>0</delta>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <formula>1</formula>
+                            <delay_flex/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <data_type>0</data_type>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Proxmox nodes</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <application_prototypes/>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>9a9d4a268c7e424d9a766ce65c9707df</uuid>
                             <name>{#NODE} CPUs usage</name>
-                            <type>TRAP</type>
+                            <type>2</type>
+                            <snmp_community/>
+                            <multiplier>0</multiplier>
+                            <snmp_oid/>
                             <key>proxmox.node.cpu_usage.[{#NODE}]</key>
                             <delay>0</delay>
-                            <history>28d</history>
-                            <value_type>FLOAT</value_type>
+                            <history>28</history>
+                            <trends>365</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
                             <units>%</units>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Proxmox nodes</value>
-                                </tag>
-                            </tags>
+                            <delta>0</delta>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <formula>1</formula>
+                            <delay_flex/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <data_type>0</data_type>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Proxmox nodes</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <application_prototypes/>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>bb9dd9a6f0684f4b91a6c89b9d83c8ef</uuid>
                             <name>{#NODE} KSM sharing</name>
-                            <type>TRAP</type>
+                            <type>2</type>
+                            <snmp_community/>
+                            <multiplier>0</multiplier>
+                            <snmp_oid/>
                             <key>proxmox.node.ksm_sharing.[{#NODE}]</key>
                             <delay>0</delay>
-                            <history>28d</history>
+                            <history>28</history>
+                            <trends>365</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
                             <units>B</units>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Proxmox nodes</value>
-                                </tag>
-                            </tags>
+                            <delta>0</delta>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <formula>1</formula>
+                            <delay_flex/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <data_type>0</data_type>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Proxmox nodes</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <application_prototypes/>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>c8c3159fb438499da7d89acd762c4d17</uuid>
                             <name>{#NODE} containers running</name>
-                            <type>TRAP</type>
+                            <type>2</type>
+                            <snmp_community/>
+                            <multiplier>0</multiplier>
+                            <snmp_oid/>
                             <key>proxmox.node.lxc_running.[{#NODE}]</key>
                             <delay>0</delay>
-                            <history>28d</history>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Proxmox nodes</value>
-                                </tag>
-                            </tags>
+                            <history>28</history>
+                            <trends>365</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <delta>0</delta>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <formula>1</formula>
+                            <delay_flex/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <data_type>0</data_type>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Proxmox nodes</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <application_prototypes/>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>dc96a0cdc940435c929ad76293493b37</uuid>
                             <name>{#NODE} containers total</name>
-                            <type>TRAP</type>
+                            <type>2</type>
+                            <snmp_community/>
+                            <multiplier>0</multiplier>
+                            <snmp_oid/>
                             <key>proxmox.node.lxc_total.[{#NODE}]</key>
                             <delay>0</delay>
-                            <history>28d</history>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Proxmox nodes</value>
-                                </tag>
-                            </tags>
+                            <history>28</history>
+                            <trends>365</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <delta>0</delta>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <formula>1</formula>
+                            <delay_flex/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <data_type>0</data_type>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Proxmox nodes</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <application_prototypes/>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>0811d38bf8f247349655bf6732f82c3b</uuid>
                             <name>Node {#NODE} online</name>
-                            <type>TRAP</type>
+                            <type>2</type>
+                            <snmp_community/>
+                            <multiplier>0</multiplier>
+                            <snmp_oid/>
                             <key>proxmox.node.online.[{#NODE}]</key>
                             <delay>0</delay>
-                            <history>28d</history>
+                            <history>28</history>
+                            <trends>365</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <delta>0</delta>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <formula>1</formula>
+                            <delay_flex/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <data_type>0</data_type>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Proxmox cluster</name>
+                                </application>
+                            </applications>
                             <valuemap>
                                 <name>SNMP BooleanType</name>
                             </valuemap>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Proxmox cluster</value>
-                                </tag>
-                            </tags>
-                            <trigger_prototypes>
-                                <trigger_prototype>
-                                    <uuid>b726ef8a6df24658b4819ca6112ccc69</uuid>
-                                    <expression>last(/Template Proxmox cluster/proxmox.node.online.[{#NODE}])&lt;&gt;1</expression>
-                                    <name>Node {#NODE} not online on {HOSTNAME}</name>
-                                    <priority>HIGH</priority>
-                                </trigger_prototype>
-                            </trigger_prototypes>
+                            <logtimefmt/>
+                            <application_prototypes/>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>8792394e7ebe4a28866042b8df015078</uuid>
                             <name>{#NODE} RAM free</name>
-                            <type>TRAP</type>
+                            <type>2</type>
+                            <snmp_community/>
+                            <multiplier>0</multiplier>
+                            <snmp_oid/>
                             <key>proxmox.node.ram_free.[{#NODE}]</key>
                             <delay>0</delay>
-                            <history>28d</history>
+                            <history>28</history>
+                            <trends>365</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
                             <units>B</units>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Proxmox nodes</value>
-                                </tag>
-                            </tags>
+                            <delta>0</delta>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <formula>1</formula>
+                            <delay_flex/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <data_type>0</data_type>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Proxmox nodes</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <application_prototypes/>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>5480d1dcbbf24e21817037076df7dd21</uuid>
                             <name>{#NODE} RAM total</name>
-                            <type>TRAP</type>
+                            <type>2</type>
+                            <snmp_community/>
+                            <multiplier>0</multiplier>
+                            <snmp_oid/>
                             <key>proxmox.node.ram_total.[{#NODE}]</key>
                             <delay>0</delay>
-                            <history>28d</history>
+                            <history>28</history>
+                            <trends>365</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
                             <units>B</units>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Proxmox nodes</value>
-                                </tag>
-                            </tags>
+                            <delta>0</delta>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <formula>1</formula>
+                            <delay_flex/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <data_type>0</data_type>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Proxmox nodes</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <application_prototypes/>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>7ffb4659c693456785cc86db9984aa2a</uuid>
                             <name>{#NODE} RAM usage</name>
-                            <type>TRAP</type>
+                            <type>2</type>
+                            <snmp_community/>
+                            <multiplier>0</multiplier>
+                            <snmp_oid/>
                             <key>proxmox.node.ram_usage.[{#NODE}]</key>
                             <delay>0</delay>
-                            <history>28d</history>
-                            <value_type>FLOAT</value_type>
+                            <history>28</history>
+                            <trends>365</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
                             <units>%</units>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Proxmox nodes</value>
-                                </tag>
-                            </tags>
+                            <delta>0</delta>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <formula>1</formula>
+                            <delay_flex/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <data_type>0</data_type>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Proxmox nodes</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <application_prototypes/>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>463fcb6fd6064996b6de5561a7899aed</uuid>
                             <name>{#NODE} RAM used</name>
-                            <type>TRAP</type>
+                            <type>2</type>
+                            <snmp_community/>
+                            <multiplier>0</multiplier>
+                            <snmp_oid/>
                             <key>proxmox.node.ram_used.[{#NODE}]</key>
                             <delay>0</delay>
-                            <history>28d</history>
+                            <history>28</history>
+                            <trends>365</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
                             <units>B</units>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Proxmox nodes</value>
-                                </tag>
-                            </tags>
+                            <delta>0</delta>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <formula>1</formula>
+                            <delay_flex/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <data_type>0</data_type>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Proxmox nodes</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <application_prototypes/>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>b15073f396db4dcb9c85883f393b75a3</uuid>
                             <name>{#NODE} vCPU allocated</name>
-                            <type>TRAP</type>
+                            <type>2</type>
+                            <snmp_community/>
+                            <multiplier>0</multiplier>
+                            <snmp_oid/>
                             <key>proxmox.node.vcpu_allocated.[{#NODE}]</key>
                             <delay>0</delay>
-                            <history>28d</history>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Proxmox nodes</value>
-                                </tag>
-                            </tags>
+                            <history>28</history>
+                            <trends>365</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <delta>0</delta>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <formula>1</formula>
+                            <delay_flex/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <data_type>0</data_type>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Proxmox nodes</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <application_prototypes/>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>aaee60ff67c84de392ee47196d3f26de</uuid>
                             <name>{#NODE} vHDD allocated</name>
-                            <type>TRAP</type>
+                            <type>2</type>
+                            <snmp_community/>
+                            <multiplier>0</multiplier>
+                            <snmp_oid/>
                             <key>proxmox.node.vhdd_allocated.[{#NODE}]</key>
                             <delay>0</delay>
-                            <history>28d</history>
+                            <history>28</history>
+                            <trends>365</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
                             <units>B</units>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Proxmox nodes</value>
-                                </tag>
-                            </tags>
+                            <delta>0</delta>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <formula>1</formula>
+                            <delay_flex/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <data_type>0</data_type>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Proxmox nodes</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <application_prototypes/>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>08257f3a7c0c4b4dba997e6ebf0120c4</uuid>
                             <name>{#NODE} VMs running</name>
-                            <type>TRAP</type>
+                            <type>2</type>
+                            <snmp_community/>
+                            <multiplier>0</multiplier>
+                            <snmp_oid/>
                             <key>proxmox.node.vms_running.[{#NODE}]</key>
                             <delay>0</delay>
-                            <history>28d</history>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Proxmox nodes</value>
-                                </tag>
-                            </tags>
+                            <history>28</history>
+                            <trends>365</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <delta>0</delta>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <formula>1</formula>
+                            <delay_flex/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <data_type>0</data_type>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Proxmox nodes</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <application_prototypes/>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>8b07e06f31284418a58511e743fd9984</uuid>
                             <name>{#NODE} VMs</name>
-                            <type>TRAP</type>
+                            <type>2</type>
+                            <snmp_community/>
+                            <multiplier>0</multiplier>
+                            <snmp_oid/>
                             <key>proxmox.node.vms_total.[{#NODE}]</key>
                             <delay>0</delay>
-                            <history>28d</history>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Proxmox nodes</value>
-                                </tag>
-                            </tags>
+                            <history>28</history>
+                            <trends>365</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <delta>0</delta>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <formula>1</formula>
+                            <delay_flex/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <data_type>0</data_type>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Proxmox nodes</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <application_prototypes/>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>2bdb9580a24d43b788d021e4e701d695</uuid>
                             <name>{#NODE} vRAM allocated</name>
-                            <type>TRAP</type>
+                            <type>2</type>
+                            <snmp_community/>
+                            <multiplier>0</multiplier>
+                            <snmp_oid/>
                             <key>proxmox.node.vram_allocated.[{#NODE}]</key>
                             <delay>0</delay>
-                            <history>28d</history>
+                            <history>28</history>
+                            <trends>365</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
                             <units>B</units>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Proxmox nodes</value>
-                                </tag>
-                            </tags>
+                            <delta>0</delta>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <formula>1</formula>
+                            <delay_flex/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <data_type>0</data_type>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Proxmox nodes</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <application_prototypes/>
                         </item_prototype>
                         <item_prototype>
-                            <uuid>03aa1b8e2812402780e1cd1c879f921f</uuid>
                             <name>{#NODE} vRAM used</name>
-                            <type>TRAP</type>
+                            <type>2</type>
+                            <snmp_community/>
+                            <multiplier>0</multiplier>
+                            <snmp_oid/>
                             <key>proxmox.node.vram_used.[{#NODE}]</key>
                             <delay>0</delay>
-                            <history>28d</history>
+                            <history>28</history>
+                            <trends>365</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
                             <units>B</units>
-                            <tags>
-                                <tag>
-                                    <tag>Application</tag>
-                                    <value>Proxmox nodes</value>
-                                </tag>
-                            </tags>
+                            <delta>0</delta>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <formula>1</formula>
+                            <delay_flex/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <data_type>0</data_type>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Proxmox nodes</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <application_prototypes/>
                         </item_prototype>
                     </item_prototypes>
-                </discovery_rule>
-                <discovery_rule>
-                    <uuid>cdb0ec268ead4f14b97b7e84736ce572</uuid>
-                    <name>Proxmox storage discovery</name>
-                    <type>TRAP</type>
-                    <key>proxmox.storage.discovery</key>
-                    <delay>0</delay>
-                    <description>Discover storage in Proxmox cluster</description>
-                    <item_prototypes>
-                        <item_prototype>
-                            <uuid>dc0ff0f577404252879353fe41bf6e44</uuid>
-                            <name>{#STORAGE} Disk max</name>
-                            <type>TRAP</type>
-                            <key>proxmox.storage.disk_max.[{#STORAGE}]</key>
-                            <delay>0</delay>
-                            <history>28d</history>
-                            <value_type>FLOAT</value_type>
-                            <units>B</units>
-                        </item_prototype>
-                        <item_prototype>
-                            <uuid>a98f395f8b6141fbb862b4151a2b26b7</uuid>
-                            <name>{#STORAGE} Disk use</name>
-                            <type>TRAP</type>
-                            <key>proxmox.storage.disk_use.[{#STORAGE}]</key>
-                            <delay>0</delay>
-                            <history>28d</history>
-                            <value_type>FLOAT</value_type>
-                            <units>B</units>
-                        </item_prototype>
-                        <item_prototype>
-                            <uuid>ec1b9b36898344feb50a89cd4c06a184</uuid>
-                            <name>{#STORAGE} Disk use %</name>
-                            <type>TRAP</type>
-                            <key>proxmox.storage.disk_use_p.[{#STORAGE}]</key>
-                            <delay>0</delay>
-                            <history>28d</history>
-                            <value_type>FLOAT</value_type>
-                            <units>%</units>
-                            <trigger_prototypes>
-                                <trigger_prototype>
-                                    <uuid>1a7c402f35dc4ab4bfbae97b56162538</uuid>
-                                    <expression>last(/Template Proxmox cluster/proxmox.storage.disk_use_p.[{#STORAGE}])&gt;80</expression>
-                                    <name>Storage use {#STORAGE} high {HOSTNAME}</name>
-                                    <priority>HIGH</priority>
-                                </trigger_prototype>
-                            </trigger_prototypes>
-                        </item_prototype>
-                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{Template Proxmox cluster:proxmox.node.online.[{#NODE}].last()}&lt;&gt;1</expression>
+                            <name>Node {#NODE} not online on {HOSTNAME}</name>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description/>
+                            <type>0</type>
+                            <dependencies/>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                    <graph_prototypes/>
+                    <host_prototypes/>
                 </discovery_rule>
             </discovery_rules>
-            <valuemaps>
-                <valuemap>
-                    <uuid>e557ded2218f4159b299041eb8c801d8</uuid>
-                    <name>SNMP BooleanType</name>
-                    <mappings>
-                        <mapping>
-                            <value>0</value>
-                            <newvalue>False</newvalue>
-                        </mapping>
-                        <mapping>
-                            <value>1</value>
-                            <newvalue>True</newvalue>
-                        </mapping>
-                    </mappings>
-                </valuemap>
-            </valuemaps>
+            <macros/>
+            <templates/>
+            <screens/>
         </template>
     </templates>
+    <triggers>
+        <trigger>
+            <expression>{Template Proxmox cluster:promox.cluster.quorate.nodata(11m)}=1</expression>
+            <name>No status updates from {HOSTNAME}</name>
+            <url/>
+            <status>0</status>
+            <priority>4</priority>
+            <description/>
+            <type>0</type>
+            <dependencies/>
+        </trigger>
+        <trigger>
+            <expression>{Template Proxmox cluster:promox.cluster.quorate.last()}&lt;&gt;1</expression>
+            <name>Proxmox not quorate on {HOSTNAME}</name>
+            <url/>
+            <status>0</status>
+            <priority>5</priority>
+            <description/>
+            <type>0</type>
+            <dependencies/>
+        </trigger>
+    </triggers>
+    <value_maps>
+        <value_map>
+            <name>SNMP BooleanType</name>
+            <mappings>
+                <mapping>
+                    <value>0</value>
+                    <newvalue>False</newvalue>
+                </mapping>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>True</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+    </value_maps>
 </zabbix_export>
