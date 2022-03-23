@@ -121,7 +121,7 @@ cluster_data = {
         'nodes_total': 0,
         'nodes_online': 0,
     },
-    'nodes': {}
+    'nodes': {},
     'storage': {}
 }
 
