@@ -2,22 +2,17 @@
 
 # -*- coding: utf-8 -*-
 """Report Proxmox cluster statistics to Zabbix.
-
 Copyright (C) 2020 Takala Consulting
-
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
-
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
-
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
 Minimum requirements Proxmox 5, Python 3.4, Zabbix 3.0.
 """
 
@@ -43,7 +38,8 @@ parser.add_argument('-a',
                     help='Proxmox API hostname')
 parser.add_argument('-c',
                     '--config',
-                    default='/etc/zabbix/zabbix_agentd.conf',
+#                    default='/etc/zabbix/zabbix_agentd.conf',
+                    default='/etc/zabbix/zabbix_agent2.conf',
                     help='full path to zabbix_agentd configuration file')
 parser.add_argument('-d',
                     '--discovery',
@@ -256,7 +252,6 @@ for resource in proxmox.cluster.resources.get():
 
 def update_vhdd(config, target):
     """Get the HDD size from a configuration file string and update cluster stats.
-
     Data is stored in bytes to allow better representation in the zabbix UI.
     The G quantifier is using a compiled re, and placed first, as it typically
     matches the vast majority of cases.
