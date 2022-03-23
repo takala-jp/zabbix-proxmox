@@ -122,6 +122,7 @@ cluster_data = {
         'nodes_online': 0,
     },
     'nodes': {}
+    'storage': {}
 }
 
 # get cluster and nodes overview
