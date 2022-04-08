@@ -2,22 +2,17 @@
 
 # -*- coding: utf-8 -*-
 """Report Proxmox cluster statistics to Zabbix.
-
 Copyright (C) 2020 Takala Consulting
-
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
-
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
-
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
 Minimum requirements Proxmox 5, Python 3.4, Zabbix 3.0.
 """
 
@@ -43,8 +38,7 @@ parser.add_argument('-a',
                     help='Proxmox API hostname')
 parser.add_argument('-c',
                     '--config',
-#                    default='/etc/zabbix/zabbix_agentd.conf',
-                    default='/etc/zabbix/zabbix_agent2.conf',
+                    default='/etc/zabbix/zabbix_agentd.conf',
                     help='full path to zabbix_agentd configuration file')
 parser.add_argument('-d',
                     '--discovery',
@@ -66,6 +60,10 @@ parser.add_argument('-p',
                     '--password',
                     default='',
                     help='Proxmox API password')
+parser.add_argument('-s',
+                    '--storage',
+                    help='get storage data / storage discovery data',
+                    action="store_true")
 parser.add_argument('-t',
                     '--target',
                     default=socket.gethostname(),
@@ -145,14 +143,15 @@ for node in proxmox.cluster.status.get():
             'ksm_sharing': 0,
         }
 
-# get storage overview
-for resource in proxmox.cluster.resources.get():
-    if resource['type'] == "storage":
-        cluster_data['storage'][resource['id']] = {
-            'disk_use': resource['disk'],
-            'disk_max': resource['maxdisk'],
-            'disk_use_p': 0,
-        }
+# if requested get storage overview
+if args.storage:
+    for resource in proxmox.cluster.resources.get():
+        if resource['type'] == "storage":
+            cluster_data['storage'][resource['id']] = {
+                'disk_use': resource['disk'],
+                'disk_max': resource['maxdisk'],
+                'disk_use_p': 0,
+            }
 
 # if requested send low level discovery data now and exit
 if args.discovery:
@@ -161,15 +160,17 @@ if args.discovery:
             "{#NODE}": n
         } for n in cluster_data['nodes']]}))
 
-    discovery_data2 = (json.dumps(
-        {'data': [{
-            "{#STORAGE}": n
-        } for n in cluster_data['storage']]}))
-    
+    if args.storage:
+        discovery_data2 = (json.dumps(
+            {'data': [{
+                "{#STORAGE}": n
+            } for n in cluster_data['storage']]}))
+
     if args.verbose:
         print(discovery_data)
-        print(discovery_data2)
-        
+        if args.storage:
+            print(discovery_data2)
+
     try:
         result = subprocess.run([
             args.zsend, "-c" + args.config, "-s" + args.target,
@@ -180,17 +181,18 @@ if args.discovery:
         sys.exit(1)
     if args.verbose:
         print(result)
-#    sys.exit(0)
-    try:
-        result = subprocess.run([
-            args.zsend, "-c" + args.config, "-s" + args.target,
-            "-k" + "proxmox.storage.discovery", "-o" + str(discovery_data2)
-        ], capture_output=args.output, check=args.ignore_errors)
-    except Exception as error:  # pylint: disable=broad-except
-        print("Error while sending discovery data:", str(error))
-        sys.exit(1)
-    if args.verbose:
-        print(result)
+
+    if args.storage:
+        try:
+            result = subprocess.run([
+                args.zsend, "-c" + args.config, "-s" + args.target,
+                "-k" + "proxmox.storage.discovery", "-o" + str(discovery_data2)
+            ], capture_output=args.output, check=args.ignore_errors)
+        except Exception as error:  # pylint: disable=broad-except
+            print("Error while sending discovery data:", str(error))
+            sys.exit(1)
+        if args.verbose:
+            print(result)
     sys.exit(0)
 
 # get cluster and node details
@@ -245,19 +247,19 @@ size_pattern = re.compile(r"^size=\d+[T|G|M|K]")
 # regular expression to match G in config block
 gig_pattern = re.compile(r"^\d+G$")
 
-# get storage details
-for resource in proxmox.cluster.resources.get():
-    if resource['type'] == "storage":
-        cluster_data['storage'][resource['id']]['disk_max'] = resource.get(
-            'maxdisk', 0)
-        cluster_data['storage'][resource['id']]['disk_use'] = resource.get(
-            'disk', 0)
-        cluster_data['storage'][resource['id']]['disk_use_p'] = 100 * (
-            float(resource.get('disk', 0)) / float(resource.get('maxdisk', 1)))
+# if requested get storage details
+if args.storage:
+    for resource in proxmox.cluster.resources.get():
+        if resource['type'] == "storage":
+            cluster_data['storage'][resource['id']]['disk_max'] = resource.get(
+                'maxdisk', 0)
+            cluster_data['storage'][resource['id']]['disk_use'] = resource.get(
+                'disk', 0)
+            cluster_data['storage'][resource['id']]['disk_use_p'] = 100 * (
+                float(resource.get('disk', 0)) / float(resource.get('maxdisk', 1)))
 
 def update_vhdd(config, target):
     """Get the HDD size from a configuration file string and update cluster stats.
-    
     Data is stored in bytes to allow better representation in the zabbix UI.
     The G quantifier is using a compiled re, and placed first, as it typically
     matches the vast majority of cases.
@@ -362,9 +364,10 @@ for n in cluster_data['nodes']:
         item_data += (args.target + " " + "proxmox.node." + str(i) + ".[" +
                       str(n) + "]" + " " + str(epoch_seconds) + " " +
                       str(cluster_data['nodes'][n][i]) + "\r\n")
-for n in cluster_data['storage']:
-    for i in cluster_data['storage'][n]:
-        item_data += (args.target + " " + "proxmox.storage." + str(i) + ".[" +
+if args.storage:
+    for n in cluster_data['storage']:
+        for i in cluster_data['storage'][n]:
+            item_data += (args.target + " " + "proxmox.storage." + str(i) + ".[" +
                       str(n) + "]" + " " + str(epoch_seconds) + " " +
                       str(cluster_data['storage'][n][i]) + "\r\n")
 if args.verbose:
