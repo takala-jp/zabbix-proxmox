@@ -265,7 +265,7 @@ if args.storage:
 
 def update_vhdd(config, target):
     """Get the HDD size from a configuration file string and update cluster stats.
-    
+
     Data is stored in bytes to allow better representation in the zabbix UI.
     The G quantifier is using a compiled re, and placed first, as it typically
     matches the vast majority of cases.
