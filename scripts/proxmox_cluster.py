@@ -65,6 +65,10 @@ parser.add_argument('-p',
                     '--password',
                     default='',
                     help='Proxmox API password')
+parser.add_argument('-s',
+                    '--storage',
+                    help='get storage data / storage discovery data',
+                    action="store_true")
 parser.add_argument('-t',
                     '--target',
                     default=socket.gethostname(),
@@ -121,7 +125,8 @@ cluster_data = {
         'nodes_total': 0,
         'nodes_online': 0,
     },
-    'nodes': {}
+    'nodes': {},
+    'storage': {}
 }
 
 # get cluster and nodes overview
@@ -143,14 +148,34 @@ for node in proxmox.cluster.status.get():
             'ksm_sharing': 0,
         }
 
+# if requested get storage overview
+if args.storage:
+    for resource in proxmox.cluster.resources.get():
+        if resource['type'] == "storage":
+            cluster_data['storage'][resource['id']] = {
+                'disk_use': resource['disk'],
+                'disk_max': resource['maxdisk'],
+                'disk_use_p': 0,
+            }
+
 # if requested send low level discovery data now and exit
 if args.discovery:
     discovery_data = (json.dumps(
         {'data': [{
             "{#NODE}": n
         } for n in cluster_data['nodes']]}))
+
+    if args.storage:
+        discovery_data2 = (json.dumps(
+            {'data': [{
+                "{#STORAGE}": n
+            } for n in cluster_data['storage']]}))
+
     if args.verbose:
         print(discovery_data)
+        if args.storage:
+            print(discovery_data2)
+
     try:
         result = subprocess.run([
             args.zsend, "-c" + args.config, "-s" + args.target,
@@ -161,6 +186,18 @@ if args.discovery:
         sys.exit(1)
     if args.verbose:
         print(result)
+
+    if args.storage:
+        try:
+            result = subprocess.run([
+                args.zsend, "-c" + args.config, "-s" + args.target,
+                "-k" + "proxmox.storage.discovery", "-o" + str(discovery_data2)
+            ], capture_output=args.output, check=args.ignore_errors)
+        except Exception as error:  # pylint: disable=broad-except
+            print("Error while sending discovery data:", str(error))
+            sys.exit(1)
+        if args.verbose:
+            print(result)
     sys.exit(0)
 
 # get cluster and node details
@@ -215,6 +252,16 @@ size_pattern = re.compile(r"^size=\d+[T|G|M|K]")
 # regular expression to match G in config block
 gig_pattern = re.compile(r"^\d+G$")
 
+# if requested get storage details
+if args.storage:
+    for resource in proxmox.cluster.resources.get():
+        if resource['type'] == "storage":
+            cluster_data['storage'][resource['id']]['disk_max'] = resource.get(
+                'maxdisk', 0)
+            cluster_data['storage'][resource['id']]['disk_use'] = resource.get(
+                'disk', 0)
+            cluster_data['storage'][resource['id']]['disk_use_p'] = 100 * (
+                float(resource.get('disk', 0)) / float(resource.get('maxdisk', 1)))
 
 def update_vhdd(config, target):
     """Get the HDD size from a configuration file string and update cluster stats.
@@ -324,6 +371,12 @@ for n in cluster_data['nodes']:
                       str(n) + "]" + " " + str(epoch_seconds) + " " +
                       str(cluster_data['nodes'][n][i]) + "\r\n")
 
+if args.storage:
+    for n in cluster_data['storage']:
+        for i in cluster_data['storage'][n]:
+            item_data += (args.target + " " + "proxmox.storage." + str(i) + ".[" +
+                      str(n) + "]" + " " + str(epoch_seconds) + " " +
+                      str(cluster_data['storage'][n][i]) + "\r\n")
 if args.verbose:
     print(item_data)
 
