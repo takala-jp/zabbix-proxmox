@@ -22,8 +22,8 @@ The script can run on any host with Python, a functional zabbix_sender and acces
   * Set a password for the zabbix user in Proxmox: `pveum passwd zabbix@pve`
   * Grant read only permissions to the zabbix user. The built in **PVEAuditor** role seems a good choice: `pveum aclmod / -user zabbix@pve -role PVEAuditor`
   * Set up scheduled tasks executing the script. The following two examples use cron: `crontab -e -u zabbix`
-    * Send discovery data: `0 */4 * * * /usr/lib/zabbix/bin/proxmox_cluster.py -a pmx01.your.tld -u zabbix@pve -p password -t proxmox.tokyo.prod -d`
-    * Send item data: `*/10 * * * * /usr/lib/zabbix/bin/proxmox_cluster.py -a pmx01.your.tld -u zabbix@pve -p password -t proxmox.tokyo.prod`
+    * Send discovery data: `0 */4 * * * /usr/lib/zabbix/bin/proxmox_cluster.py -a pmx01.your.tld -u zabbix@pve -p password -s -t proxmox.tokyo.prod -d`
+    * Send item data: `*/10 * * * * /usr/lib/zabbix/bin/proxmox_cluster.py -a pmx01.your.tld -u zabbix@pve -p password -s -t proxmox.tokyo.prod`
 
 ## Configuration
 
@@ -36,6 +36,7 @@ The script accepts the following parameters:
   * -i : Ignore zabbix_sender non-zero exit codes (see Discovery errors)
   * -o : Output the zabbix_sender response summary
   * -p : Proxmox API password
+  * -s : Enable storage discovery and monitoring
   * -t : Zabbix target host name (the host in Zabbix with the *Template Proxmox cluster* template attached)
   * -u : Proxmox API username (defaults to: *zabbix@pve*)
   * -v : Verbose, prints data and zabbix_sender results to stdout.
@@ -61,6 +62,8 @@ If there is no load balancer fronting the API it would make sense to use multipl
 One of the zabbix item keys in the script, and template, is prefixed ```promox```. That is obviously a typo but changing it would mean breaking compatability with existing installations. Changing the key in zabbix would mean losing historical data which is also undesirable. This is purely a cosmetic issue but if desirable you can of course change the prefix for those items. In that case also make sure that the keys in the template are updated accordingly.
 
 If you define the zabbix monitor user in Linux instead of Proxmox the -u parameter would have to reflect that by using the pam realm: ```zabbix@pam```.
+
+Storage monitoring was added to the script later and is not enabled by default to maintain compatibility. Use the -s parameter to enable it. This needs to be done for both the discovery and metric collection invocations. For existing installations the proxmox_cluster_template.xml needs to be imported again as it contains new discovery rules. Alternatively you can import the proxmox_cluster_storage_addon_template.xml and attach it to your Proxmox cluster host as an additional template. This can be useful if the cluster template was renamed after the original import.
 
 Minimum requirements Proxmox 5, Python 3.7 and Zabbix 3.0.
 
