@@ -6,6 +6,7 @@ Get cluster and node details from the Proxmox API and report them to Zabbix usin
 
   * Low Level Discovery of cluster nodes
   * Collects cluster quorum and nodes status, overall cluster and nodes RAM/CPU usage and KSM sharing, vRAM allocation and usage, vCPU and vHDD allocations, number of VMs and LXC containers running or stopped.
+  * Low Level Discovery of storage and storage utilization
 
 ## Installation
 
