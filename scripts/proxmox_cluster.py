@@ -152,12 +152,19 @@ for node in proxmox.cluster.status.get():
 if args.storage:
     for resource in proxmox.cluster.resources.get():
         if resource['type'] == "storage":
-            cluster_data['storage'][resource['id']] = {
-                'disk_use': resource['disk'],
-                'disk_max': resource['maxdisk'],
-                'disk_use_p': 0,
-            }
-
+            try:
+                cluster_data['storage'][resource['id']] = {
+                    'disk_use': resource['disk'],
+                    'disk_max': resource['maxdisk'],
+                    'disk_use_p': 0,
+                }
+            except:
+                cluster_data['storage'][resource['id']] = {
+                    'disk_use': 0,
+                    'disk_max': 0,
+                    'disk_use_p': 0,
+                }
+            
 # if requested send low level discovery data now and exit
 if args.discovery:
     discovery_data = (json.dumps(
